@@ -1,0 +1,21 @@
+.vacancy {
+    /* 60 header height */
+    height: calc(80vh - 60px);
+    width: 80%;
+    margin: 5% 10%;
+}
+
+.vacancy-filter {
+    height: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.vacancy-content {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr 1fr;
+    margin-top: 20px;
+    gap: 20px;
+}
