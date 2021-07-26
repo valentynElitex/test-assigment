@@ -11,6 +11,7 @@ export const Vacancy = () => {
     const [period, setPeriod] = useState(0);
 
     useEffect(() => {
+        // simple submission of a request to the server
         fetch('http://localhost:5000/test/jobs')
             .then(res => res.json())
             .then(({ jobs }) => setVacancies(jobs));
@@ -19,14 +20,14 @@ export const Vacancy = () => {
     useEffect(() => {
         // filter vacancies
         let filteredArray = vacancies;
-        if (company && period) {
-            filteredArray = vacancies.filter((vacancy) => vacancy.companyName === company && parseInt(vacancy.postedDate) <= period);
-        } else if (company) {
-            filteredArray = vacancies.filter((vacancy) => vacancy.companyName === company);
-        } else if (period) {
-            filteredArray = vacancies.filter((vacancy) => parseInt(vacancy.postedDate) <= period);
+        if (company || period) {
+            // if there is at least 1 filter selected - filter the records
+            filteredArray = vacancies.filter((vacancy) =>
+                (company ? (vacancy.companyName === company) : true) &&
+                (period ? (parseInt(vacancy.postedDate) <= period) : true));
         }
-        setFilteredVacancies(filteredArray)
+
+        setFilteredVacancies(filteredArray);
     }, [company, period, vacancies])
 
     return (

@@ -2,6 +2,8 @@
     /* 60 header height */
     height: calc(80vh - 60px);
     width: 80%;
+    position: relative;
+    top: 60px;
     margin: 5% 10%;
 }
 
@@ -18,4 +20,24 @@
     grid-template: 1fr / 1fr 1fr 1fr 1fr;
     margin-top: 20px;
     gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .vacancy-content {
+        grid-template: 1fr / 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 425px) {
+    .vacancy-filter {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .vacancy-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

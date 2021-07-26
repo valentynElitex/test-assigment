@@ -86,7 +86,7 @@ li {
     border: none;
 }
 
-.dropdown.v {
+.dropdown.visible {
     visibility: visible;
     height: max-content;
     position: absolute;

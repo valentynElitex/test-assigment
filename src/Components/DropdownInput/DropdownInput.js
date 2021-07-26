@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+
 import './DropdownInput.css';
 
 export const DropdownInput = ({ list, searchBy = 'name', placeholder = '', inputValue = '', onChangeCallback }) => {
@@ -21,6 +23,7 @@ export const DropdownInput = ({ list, searchBy = 'name', placeholder = '', input
     return () => document.removeEventListener('mousedown', handleClick, false);
   }, []);
 
+  // click away handler
   const handleClick = e => {
     if (dropdownInputRef !== null || dropdownInputRef.current.contains(e.target)) {
       return;
@@ -28,6 +31,7 @@ export const DropdownInput = ({ list, searchBy = 'name', placeholder = '', input
     setVisible(false);
   };
 
+  // input handler
   const handleChange = e => {
     setSearchValue(e.target.value);
     if (!visible) {
@@ -35,6 +39,7 @@ export const DropdownInput = ({ list, searchBy = 'name', placeholder = '', input
     }
   };
 
+  // select input item handler
   const selectItem = item => {
     setSearchValue(item[searchBy]);
     onChangeCallback(item[searchBy]);
@@ -58,7 +63,7 @@ export const DropdownInput = ({ list, searchBy = 'name', placeholder = '', input
         />
       </div>
 
-      <div ref={dropdownInputRef} className={`dropdown ${visible ? 'v' : ''}`}>
+      <div ref={dropdownInputRef} className={`dropdown ${visible ? 'visible' : ''}`}>
         {visible && (
           <ul>
             {!list && (
@@ -85,3 +90,10 @@ export const DropdownInput = ({ list, searchBy = 'name', placeholder = '', input
   );
 };
 
+DropdownInput.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  searchBy: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  inputValue: PropTypes.string,
+  onChangeCallback: PropTypes.func.isRequired,
+}

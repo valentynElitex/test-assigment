@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { DropdownInput } from '../';
+import PropTypes from 'prop-types';
+
 import './DropdownList.css';
 
 export const DropdownList = ({ buttonTitle, title, placeholder, list, searchBy, onClickHandler, cards }) => {
@@ -7,13 +9,16 @@ export const DropdownList = ({ buttonTitle, title, placeholder, list, searchBy, 
   const [selectedOption, setSelectedOption] = useState();
   const dropdownRef = useRef(null);
 
+  // handle buttons & set card options
   const handleClick = (data) => {
     setOpened(false);
     onClickHandler(data);
 
     if (!data) {
       setSelectedOption('');
+      return;
     }
+    setSelectedOption(data);
   }
 
   // click away listener
@@ -22,6 +27,7 @@ export const DropdownList = ({ buttonTitle, title, placeholder, list, searchBy, 
     return () => document.removeEventListener('mousedown', closeHandler,);
   }, []);
 
+  // click away handler
   const closeHandler = e => {
     if (dropdownRef.current.contains(e.target)) {
       return;
@@ -66,3 +72,12 @@ export const DropdownList = ({ buttonTitle, title, placeholder, list, searchBy, 
   );
 }
 
+DropdownList.propTypes = {
+  buttonTitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  searchBy: PropTypes.string.isRequired,
+  onClickHandler: PropTypes.func.isRequired,
+  cards: PropTypes.arrayOf(PropTypes.object)
+}

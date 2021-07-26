@@ -69,3 +69,13 @@
     color: var(--main-blue);
     border: 1px solid var(--main-blue);
 }
+
+@media (max-width: 426px) {
+    .dropdown-list {
+        /* 30px from filter button container */
+        top: 30px;
+        /* to clean with padding */
+        left: -24px;
+        max-width: 300px;
+    }
+}
