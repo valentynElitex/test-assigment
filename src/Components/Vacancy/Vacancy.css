@@ -22,6 +22,16 @@
     gap: 20px;
 }
 
+@media (max-width: 950px) {
+    .vacancy-content {
+        grid-template: 1fr / 1fr 1fr 1fr;
+    }
+
+    .vacancy {
+        margin: 5% 5%;
+    }
+}
+
 @media (max-width: 768px) {
     .vacancy-content {
         grid-template: 1fr / 1fr 1fr;
